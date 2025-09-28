@@ -1,6 +1,3 @@
--- H5B Admin Hub — PIN + Aimbot + ESP + Fly + NoClip + Speed + Jump + Fling + ?Costy?
--- PIN: babanecci!
-
 local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
 local UIS = game:GetService("UserInputService")
@@ -13,21 +10,21 @@ local SECRET_PIN = "babanecci!"
 
 local AIM_FOV = 180          -- screen pixels to consider
 local AIM_SMOOTH = 0.22      -- smoothing factor
-local FLY_SPEED = 60
+local FLY_SPEED = 100
 local FLING_FORCE = 1200
 
 -- ---------- CLEANUP PREVIOUS UI ----------
 if LocalPlayer and LocalPlayer:FindFirstChild("PlayerGui") then
     local pg = LocalPlayer.PlayerGui
-    if pg:FindFirstChild("H5B_Hub") then pg.H5B_Hub:Destroy() end
-    if pg:FindFirstChild("H5B_PIN") then pg.H5B_PIN:Destroy() end
+    if pg:FindFirstChild("H5B Hub") then pg.H5B_Hub:Destroy() end
+    if pg:FindFirstChild("H5B PIN") then pg.H5B_PIN:Destroy() end
 end
 
 -- ---------- PIN UI ----------
 local playerGui = LocalPlayer:WaitForChild("PlayerGui")
 
 local pinGui = Instance.new("ScreenGui", playerGui)
-pinGui.Name = "H5B_PIN"
+pinGui.Name = "H5B Code"
 pinGui.ResetOnSpawn = false
 pinGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
@@ -47,15 +44,15 @@ local pinBox = Instance.new("TextBox", pinFrame)
 pinBox.Size = UDim2.new(1,-20,0,36); pinBox.Position = UDim2.new(0,10,0,70)
 pinBox.BackgroundColor3 = Color3.fromRGB(20,20,20); pinBox.TextColor3 = Color3.fromRGB(235,235,235)
 pinBox.Font = Enum.Font.Gotham; pinBox.TextSize = 16; pinBox.ClearTextOnFocus = false
-pinBox.PlaceholderText = "Kodu girin"
+pinBox.PlaceholderText = "enter the code"
 
 local submitBtn = Instance.new("TextButton", pinFrame)
 submitBtn.Size = UDim2.new(0,120,0,36); submitBtn.Position = UDim2.new(1,-140,1,-46)
-submitBtn.Text = "GİRİŞ"; submitBtn.Font = Enum.Font.GothamBold; submitBtn.BackgroundColor3 = Color3.fromRGB(40,160,80)
+submitBtn.Text = "Enter"; submitBtn.Font = Enum.Font.GothamBold; submitBtn.BackgroundColor3 = Color3.fromRGB(40,160,80)
 
 local cancelBtn = Instance.new("TextButton", pinFrame)
 cancelBtn.Size = UDim2.new(0,120,0,36); cancelBtn.Position = UDim2.new(0,20,1,-46)
-cancelBtn.Text = "Vazgeç"; cancelBtn.Font = Enum.Font.Gotham; cancelBtn.BackgroundColor3 = Color3.fromRGB(150,60,60)
+cancelBtn.Text = "Cancel"; cancelBtn.Font = Enum.Font.Gotham; cancelBtn.BackgroundColor3 = Color3.fromRGB(150,60,60)
 
 local attempts = 0
 local MAX_ATTEMPTS = 5
@@ -72,8 +69,8 @@ local function openHub()
     if pinGui and pinGui.Parent then pinGui:Destroy() end
 
     local screen = Instance.new("ScreenGui", playerGui)
-    screen.Name = "H5B_Hub"
-    screen.ResetOnSpawn = false
+    screen.Name = "H5B Hub"
+    screen.ResetOnSpawn = true
     screen.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
     local main = Instance.new("Frame", screen)
@@ -87,7 +84,7 @@ local function openHub()
     header.Size = UDim2.new(1,0,0,64); header.BackgroundColor3 = Color3.fromRGB(28,28,28)
     local title = Instance.new("TextLabel", header); title.Size = UDim2.new(0.7,0,1,0); title.Position = UDim2.new(0.02,0,0,0)
     title.BackgroundTransparency = 1; title.Font = Enum.Font.GothamBold; title.TextSize = 18; title.TextColor3 = Color3.fromRGB(235,235,235)
-    title.Text = "H5B Hub — Admin"
+    title.Text = "H5B Hub "
     local closeBtn = Instance.new("TextButton", header); closeBtn.Size = UDim2.new(0,36,0,28); closeBtn.Position = UDim2.new(1,-44,0,8)
     closeBtn.Text = "X"; closeBtn.Font = Enum.Font.GothamBold; closeBtn.BackgroundColor3 = Color3.fromRGB(160,60,60)
     closeBtn.MouseButton1Click:Connect(function() screen:Destroy() end)
